@@ -6,9 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
 		<title>Nomi0 Chat</title>
 	</head>
-  <body style="font-family: Bariol, lucida grande, Tahoma, -webkit-pictograph, EmojiSymbols, sans-serif;">
+  <body style="font-family: Bariol, lucida grande, Tahoma, -webkit-pictograph, EmojiSymbols, sans-serif;  background-image: url(data/nomioback.png);   background-size: auto;
+">
+    <script>
+      $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+      </script>
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#hilfe">
+        Hilfe 🆘
+      </button>
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#info">Info ℹ️</button>
     <div class="container" style="text-align: center;">
 <img src="data/logo.png" ><img>
 <h1>Coming 2021...</h1>
@@ -20,9 +34,7 @@
       <br>
       <br>
       <br>
-      <br>
-      <br>
-      <br>
+   
     <div class="container" >
       <h2>Anmelden</h2>
       
@@ -31,13 +43,36 @@
     <form>
       <div class="container">
       <div class="form-inline" >
-          <label for="usr">🎫 Nutzername: </label>
-          <input type="text" class="form-control" id="usr" placeholder="Bald verfügbar." data-toggle="tooltip" title="Maximal 16 Zeichen (Buchstaben, Zahlen, Sonderzeichen: - . _ % ! ? *)">
-          <label for="pwd">✍️ Passwort: </label >
-          <input type="password" class="form-control" id="pwd" placeholder="Bald verfügbar." data-toggle="tooltip" title="Merke dir dein Passwort gut oder verwende einen Passwortmanager wie z.B. 'Bitwarden'!">
+          <label for="usr">🎫 Nutzername:</label>
+          <input type="text" class="form-control" id="usr" maxlength="16" placeholder="Bald verfügbar." data-toggle="tooltip" title="Maximal 16 Zeichen (Buchstaben, Zahlen, Sonderzeichen: - . _ % ! ? *)">
+          <label for="pwd">✍️ Passwort:  </label >
+          <input type="password" class="form-control" id="pwd" maxlength="32" placeholder="Bald verfügbar." data-toggle="tooltip" title="Merke dir dein Passwort gut oder verwende einen Passwortmanager wie z.B. 'Bitwarden'!">
           </form>
         </div>
       </div>
+      <br>
+      <br>
+      <hr>
+      <button type="button" class="btn btn-primary btn-lg" onclick="makeChar()">Neuen Nomio erstellen</button> 
+      <br>
+      <h4 id="famormale" style="visibility: hidden;">Bist du männlich oder weiblich? :)</h4>
+      <button id="makefem" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeMale(),saveCanvas()">Männlich</button>
+      <button id="makemale" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeFemale(),saveCanvas()">Weiblich</button>
+      <br>
+      <h4 id="race" style="visibility: hidden;">Wie sieht es um deinen ethnischen Hintergrund aus? :3</h4>
+      <button id="makeeuro" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeEuro(),saveCanvas()">Europide</button>
+      <button id="makemongo" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeMongo(),saveCanvas()">Mongolide</button>
+      <button id="makenegro" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeNegro(),saveCanvas()">Negroide</button>
+      <br>
+      <h4 id="eyecolor" style="visibility: hidden;">Sehr schön, welche Augenfarbe hast du? c:</h4>
+      <button id="makeblueeye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBlueeye()">Blau</button>
+      <button id="makegreeneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeGreeneye()">Grün</button>
+      <button id="makebrowneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBrowneye()">Braun</button>
+      <button id="makeasiaeye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeAsiaeye()">Braune Mandelauegn</button>
+<div style="text-align: center;">
+<canvas id="myCanvas" width="500" height="800" style="border:1px solid #d3d3d3;" >Hier ist was schief gelaufen...</canvas>
+</div>
+
 
 		<div class="join-container">
 			<header class="join-header">
@@ -66,6 +101,92 @@
 					<button type="submit" class="btn">Chat beitreten</button>
 				</form>
 			</main>
-		</div>
-	</body>
+    </div>
+    <div class="modal" id="hilfe">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Hilfe</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h3>Du hast ein Problem mit Nomi0?</h3>
+            <p>Bei technischen Problem melde ich gerne bei uns im Discord (https://discord.gg/dFBpw7uA8G)  oder schreibe Jeff(und/oder seinen Helfern) im Spiel eine Nachricht.</p>
+
+            
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Schließen</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="info">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Info</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h3>Was ist Nomi0?</h3>
+            <p>Bei Nomi0 handelt es sich um eine interaktive Social Media Plattform für Jugendliche und junge Erwachsene welche Nutzerfreiheiten über alles stellt.</p>
+            <br>
+            <h3>Ist Nomi0 kostenlos?</h3>
+            <p>Ja. Nomi0 ist 100% frei von irgendwelchen Kosten. (Es besteht zwar die Möglichkeit auf Spenden, diese bringen den Nutzern jedoch keinerlei Vorteil im Spiel)</p>
+            <br>
+            <h3>Wie steht es um die Sicherheit und den Datenschutz bei Nomi0?</h3>
+            <p>Schutz von persönlichen Daten ist uns sehr wichtig, daher werden z.B. keine Dinge gespeichert, welche für die Funktion der App nicht unverzichtbar sind.</p>
+            <br>
+            <h3>Ist Nomi0 kindersicher?</h3>
+            <p>Nein, Kinder gehören nicht ins Internet.</p>
+            <br>
+            <h3>In welchem Zusammenhang steht Nomi0 mit Momio?</h3>
+            <p>Nomi0 steht in keinerlei Verbindung zu Momio ApS und wir veruteilen die Art wie Momio mit seinen Nutzern umgeht zutiefst.</p>
+  
+            <h3>Mamer hilf e?</h3>
+            <p>Ihc hab geschaist in den fordt focus</p>
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Schließen</button>
+          </div>   
+        </div>
+      </div>
+    </div>
+    <img id="femcharwhite" style="visibility: hidden;" width="500" height="800"
+    src="data/nomi0_avatar_female_white_big_size.png" >
+    <img id="malecharwhite" style="visibility: hidden;" width="500" height="800"
+    src="data/nomi0_avatar_male_white_big.png" >
+    <img id="femcharmongo" style="visibility: hidden;" width="500" height="800"
+    src="data/nomi0_avatar_female_yellow_big_size.png" >
+    <img id="malecharmongo" style="visibility: hidden;" width="500" height="800"
+    src="data/nomi0_avatar_male_yellow_big.png" >
+    <img id="malecharnegro" style="visibility: hidden;" width="500" height="800"
+    src="data/nomi0_avatar_male_brown_big.png" >
+    <img id="femcharnegro" style="visibility: hidden;" width="500" height="800"
+    src="data/nomi0_avatar_female_brown_big_size.png" >
+    <img id="blueeye" style="visibility: hidden;" width="500" height="800"
+    src="data/Augen_blau.png" >
+    <img id="greeneye" style="visibility: hidden;" width="500" height="800"
+    src="data/Augen_grun.png" >
+    <img id="browneye" style="visibility: hidden;" width="500" height="800"
+    src="data/Augen_braun.png" >
+    <img id="asiaeye" style="visibility: hidden;" width="500" height="800"
+    src="data/Augen_asia_braun.png" >
+
+  </body>
+  <script src="/js/regpage.js"></script>
 </html>

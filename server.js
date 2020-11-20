@@ -19,6 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const botName = 'Jeff ';
 
+
+
+
 // Run when client connects
 io.on('connection', socket => {
   socket.on('joinRoom', ({ username, room }) => {
@@ -69,6 +72,11 @@ io.on('connection', socket => {
     }
   });
 });
+
+
+
+
+
 
 const PORT = process.env.PORT || 3000;
 
