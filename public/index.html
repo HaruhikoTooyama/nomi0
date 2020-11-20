@@ -9,6 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+
+
     
 		<title>Nomi0 Chat</title>
 	</head>
@@ -27,14 +30,22 @@
 <img src="data/logo.png" ><img>
 <h1>Coming 2021...</h1>
     </div>
-  
+  <br>
+  <div class="container">
+    <h2>Nutzernamen reservieren <span class="badge badge-secondary">Bald verfügbar!</span></h2>
+    <div class="form-group">
+      <label for="usr">Nutzername</label>
+      <input type="text" id="resName"  class="form-control" id="usr" maxlength="16" placeholder="Bald verfügbar." data-toggle="tooltip" title="Maximal 16 Zeichen (Buchstaben, Zahlen, Sonderzeichen: - . _ % ! ? *)">
+    </div>
+  </div>
     
     <br>
       <br>
       <br>
       <br>
       <br>
-   
+
+      
     <div class="container" >
       <h2>Anmelden</h2>
       
@@ -56,19 +67,18 @@
       <button type="button" class="btn btn-primary btn-lg" onclick="makeChar()">Neuen Nomio erstellen</button> 
       <br>
       <h4 id="famormale" style="visibility: hidden;">Bist du männlich oder weiblich? :)</h4>
-      <button id="makefem" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeMale(),saveCanvas()">Männlich</button>
-      <button id="makemale" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeFemale(),saveCanvas()">Weiblich</button>
+      <button id="makefem" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeMale()">Männlich</button>
+      <button id="makemale" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeFemale()">Weiblich</button>
       <br>
       <h4 id="race" style="visibility: hidden;">Wie sieht es um deinen ethnischen Hintergrund aus? :3</h4>
-      <button id="makeeuro" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeEuro(),saveCanvas()">Europide</button>
-      <button id="makemongo" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeMongo(),saveCanvas()">Mongolide</button>
-      <button id="makenegro" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeNegro(),saveCanvas()">Negroide</button>
+      <button id="makeeuro" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeEuro()">Europide</button>
+      <button id="makemongo" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeMongo()">Mongolide</button>
+      <button id="makenegro" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeNegro()">Negroide</button>
       <br>
       <h4 id="eyecolor" style="visibility: hidden;">Sehr schön, welche Augenfarbe hast du? c:</h4>
-      <button id="makeblueeye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBlueeye()">Blau</button>
-      <button id="makegreeneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeGreeneye()">Grün</button>
-      <button id="makebrowneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBrowneye()">Braun</button>
-      <button id="makeasiaeye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeAsiaeye()">Braune Mandelauegn</button>
+      <button id="makeblueeye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBlueeye(),loadCanvas()">Blau</button>
+      <button id="makegreeneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeGreeneye(),loadCanvas()">Grün</button>
+      <button id="makebrowneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBrowneye(),loadCanvas()">Braun</button>
 <div style="text-align: center;">
 <canvas id="myCanvas" width="500" height="800" style="border:1px solid #d3d3d3;" >Hier ist was schief gelaufen...</canvas>
 </div>
@@ -178,15 +188,22 @@
     src="data/nomi0_avatar_male_brown_big.png" >
     <img id="femcharnegro" style="visibility: hidden;" width="500" height="800"
     src="data/nomi0_avatar_female_brown_big_size.png" >
-    <img id="blueeye" style="visibility: hidden;" width="500" height="800"
-    src="data/Augen_blau.png" >
-    <img id="greeneye" style="visibility: hidden;" width="500" height="800"
-    src="data/Augen_grun.png" >
-    <img id="browneye" style="visibility: hidden;" width="500" height="800"
-    src="data/Augen_braun.png" >
-    <img id="asiaeye" style="visibility: hidden;" width="500" height="800"
-    src="data/Augen_asia_braun.png" >
+    <img id="feblueeye" style="visibility: hidden;" width="500" height="800"
+    src="data/feyesblue.png" >
+    <img id="fegreeneye" style="visibility: hidden;" width="500" height="800"
+    src="data/feyesgreen.png" >
+    <img id="febrowneye" style="visibility: hidden;" width="500" height="800"
+    src="data/feyesbrown.png" >
 
   </body>
+  
+  
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+  integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+  crossorigin="anonymous"
+></script>
+<script src="/socket.io/socket.io.js"></script>
   <script src="/js/regpage.js"></script>
+  
 </html>
