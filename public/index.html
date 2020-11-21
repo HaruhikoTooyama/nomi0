@@ -16,7 +16,7 @@
 		<title>Nomi0 Chat</title>
 	</head>
   <body style="font-family: Bariol, lucida grande, Tahoma, -webkit-pictograph, EmojiSymbols, sans-serif;  background-image: url(data/nomioback.png);   background-size: auto;
-">
+" onload="init()">
     <script>
       $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
@@ -69,6 +69,7 @@
       <h4 id="famormale" style="visibility: hidden;">Bist du männlich oder weiblich? :)</h4>
       <button id="makefem" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeMale()">Männlich</button>
       <button id="makemale" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeFemale()">Weiblich</button>
+      <button id="makekrank" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeKrank()">Nicht-Binär</button>
       <br>
       <h4 id="race" style="visibility: hidden;">Wie sieht es um deinen ethnischen Hintergrund aus? :3</h4>
       <button id="makeeuro" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeEuro()">Europide</button>
@@ -76,9 +77,9 @@
       <button id="makenegro" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeNegro()">Negroide</button>
       <br>
       <h4 id="eyecolor" style="visibility: hidden;">Sehr schön, welche Augenfarbe hast du? c:</h4>
-      <button id="makeblueeye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBlueeye(),loadCanvas()">Blau</button>
-      <button id="makegreeneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeGreeneye(),loadCanvas()">Grün</button>
-      <button id="makebrowneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBrowneye(),loadCanvas()">Braun</button>
+      <button id="makeblueeye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBlueeye()">Blau</button>
+      <button id="makegreeneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeGreeneye()">Grün</button>
+      <button id="makebrowneye" type="button" class="btn btn-primary btn-lg" style="visibility: hidden;" onclick="makeBrowneye()">Braun</button>
 <div style="text-align: center;">
 <canvas id="myCanvas" width="500" height="800" style="border:1px solid #d3d3d3;" >Hier ist was schief gelaufen...</canvas>
 </div>
