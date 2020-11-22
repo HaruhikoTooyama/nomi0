@@ -1,24 +1,53 @@
 
+const socket = io();
 
-var stage; 
-female = false;
-male = false;
-mhaareeins = false;
-var container = new createjs.Container();
-var koerper = new createjs.Bitmap("./data/nomi0_avatar_male_white_big.png");
-var haare = new createjs.Bitmap("./data/MHaare1.png");
 
-function init() {
-   container = new createjs.Stage("myCanvas");
-   var koerper = new createjs.Bitmap("./data/nomi0_avatar_male_white_big.png");
-   var haare = new createjs.Bitmap("./data/MHaare1.png");
+
+function ResName() {
+
+
+   
+resusrname = document.getElementById("resname").value + "\n" + document.getElementById("email").value;
+
+socket.emit("namenreser", resusrname);
+
+
+alert("Super, alles hat geklappt. Sofern deine E-Mail richtig ist, wirst in den Tagen kurz vor der Eröffnung von Nomi0 eine Nachricht mit dem Code für deinen Account erhalten. Grüße Jeff");
+
 }
 
 
 
+
+
+
+female = false;
+male = false;
+
+
+var stage = new Konva.Stage({
+   container: 'myCanvas',   // id of container <div>
+   width: 500,
+   height: 800
+ });
+
+// idk how but it works
+ var layer = new Konva.Layer();
+ layer.clearBeforeDraw(true);
+
 function makeChar() {   
    
-
+   stage.add(layer);
+   Konva.Image.fromURL('/data/nomi0_avatar_male_white_big.png', function (korpernode) {
+      korpernode.setAttrs({
+        x: 0,
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+      });
+      layer.add(korpernode);
+      layer.batchDraw();
+    });
     document.getElementById("famormale").style.visibility = "visible";
     document.getElementById("makefem").style.visibility = "visible";
     document.getElementById("makemale").style.visibility = "visible";
@@ -33,12 +62,18 @@ function makeKrank() {
 
 
 function makeMale(){
+   layer.clear(female);
+   Konva.Image.fromURL('/data/nomi0_avatar_male_white_big.png', function (male) {
+      male.setAttrs({
+        x: 0,
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+      });
+      layer.add(male);
+      layer.batchDraw();
+    });
 
-   container.removeAllChildren();
-   container.update();
-   var koerper = new createjs.Bitmap("./data/nomi0_avatar_male_white_big.png");
-   container.addChild(koerper);
-   container.update();
 
 
    document.getElementById("race").style.visibility = "visible";
@@ -52,12 +87,18 @@ function makeMale(){
 }
 
 function makeFemale() {
+   layer.clear(male);
+   Konva.Image.fromURL('/data/nomi0_avatar_female_white_big_size.png', function (female) {
+      female.setAttrs({
+        x: 0,
+        y: 0,
+        scaleX: 1,
+        scaleY: 1,
+      });
+      layer.add(female);
+      layer.batchDraw();
+    });
 
-   container.removeAllChildren();
-   container.update();
-   var koerper = new createjs.Bitmap("./data/nomi0_avatar_female_white_big_size.png");
-   container.addChild(koerper);
-   container.update();
    document.getElementById("race").style.visibility = "visible";
    document.getElementById("makeeuro").style.visibility = "visible";
    document.getElementById("makemongo").style.visibility = "visible";
@@ -70,22 +111,15 @@ function makeFemale() {
 
 function makeEuro() {
    if (female == true) {
-      container.removeAllChildren();
-      container.update();
-      var rasse = new createjs.Bitmap("./data/nomi0_avatar_female_white_big_size.png");
-      container.addChild(rasse);
-      container.update();
+    
       document.getElementById("eyecolor").style.visibility = "visible";
       document.getElementById("makegreeneye").style.visibility = "visible";
       document.getElementById("makeblueeye").style.visibility = "visible";
       document.getElementById("makebrowneye").style.visibility = "visible";
    }
    else {
-      container.removeAllChildren();
-      container.update();
-      var rasse = new createjs.Bitmap("./data/nomi0_avatar_male_white_big.png");
-      container.addChild(rasse);
-      container.update();
+     
+      
       document.getElementById("eyecolor").style.visibility = "visible";
       document.getElementById("makegreeneye").style.visibility = "visible";
       document.getElementById("makeblueeye").style.visibility = "visible";
@@ -95,11 +129,7 @@ function makeEuro() {
 
 function makeMongo() {
    if (female == true) {
-      container.removeAllChildren();
-      container.update();
-      var rasse = new createjs.Bitmap("./data/nomi0_avatar_female_yellow_big_size.png");
-      container.addChild(rasse);
-      container.update();
+   
       document.getElementById("eyecolor").style.visibility = "visible";
       document.getElementById("makegreeneye").style.visibility = "visible";
       document.getElementById("makeblueeye").style.visibility = "visible";
@@ -107,11 +137,7 @@ function makeMongo() {
    }
 
    else {
-      container.removeAllChildren();
-      container.update();
-      var rasse = new createjs.Bitmap("./data/nomi0_avatar_male_yellow_big.png");
-      container.addChild(rasse);
-      container.update();
+     
       document.getElementById("eyecolor").style.visibility = "visible";
       document.getElementById("makegreeneye").style.visibility = "visible";
       document.getElementById("makeblueeye").style.visibility = "visible";
@@ -122,11 +148,7 @@ function makeMongo() {
 
 function makeNegro() {
    if (female == true) {
-      container.removeAllChildren();
-      container.update();
-      var rasse = new createjs.Bitmap("./data/nomi0_avatar_female_brown_big_size.png");
-      container.addChild(rasse);
-      container.update();
+      
       document.getElementById("eyecolor").style.visibility = "visible";
       document.getElementById("makegreeneye").style.visibility = "visible";
       document.getElementById("makeblueeye").style.visibility = "visible";
@@ -134,11 +156,7 @@ function makeNegro() {
    }
 
    else {
-      container.removeAllChildren();
-      container.update();
-      var rasse = new createjs.Bitmap("./data/nomi0_avatar_male_brown_big.png");
-      container.addChild(rasse);
-      container.update();   
+    
       document.getElementById("eyecolor").style.visibility = "visible";
       document.getElementById("makegreeneye").style.visibility = "visible";
       document.getElementById("makeblueeye").style.visibility = "visible";
@@ -149,21 +167,13 @@ function makeNegro() {
 
 function makeBlueeye() {
    if (female == true) {
-   container.removeChild(augen);
-   container.update();
-   var augen = new createjs.Bitmap("./data/feyesblue.png");
-   container.addChild(augen);
-   container.update();
+ 
    document.getElementById("haare").style.visibility = "visible";
 
    }
    
    else {
-      container.removeChild(augen);
-   container.update();
-   var augen = new createjs.Bitmap("./data/meyesblue.png");
-   container.addChild(augen);
-   container.update();
+     
    document.getElementById("haare").style.visibility = "visible";
    document.getElementById("pmhaare1").style.visibility = "visible";
    document.getElementById("pmhaare2").style.visibility = "visible";
@@ -177,20 +187,12 @@ function makeBlueeye() {
 
 function makeGreeneye() {
    if (female == true) {
-   container.removeChild(augen);
-   container.update();
-   var augen = new createjs.Bitmap("./data/feyesgreen.png");
-   container.addChild(augen);
-   container.update();
+ 
    document.getElementById("haare").style.visibility = "visible";
 
    }
    else {
-   container.removeChild(augen);
-   container.update();
-   var augen = new createjs.Bitmap("./data/meyesgreen.png");
-   container.addChild(augen);
-   container.update();
+   
    document.getElementById("haare").style.visibility = "visible";
    document.getElementById("pmhaare1").style.visibility = "visible";
    document.getElementById("pmhaare2").style.visibility = "visible";
@@ -203,19 +205,11 @@ function makeGreeneye() {
 
 function makeBrowneye() {
    if ( female == true ) {
-   container.removeChild(augen);
-   container.update();
-   var augen = new createjs.Bitmap("./data/feyesbrown.png");
-   container.addChild(augen);
-   container.update();
+   
    document.getElementById("haare").style.visibility = "visible";
    }
    else {
-   container.removeChild(augen);
-   container.update();
-   var augen = new createjs.Bitmap("./data/meyesbrown.png");
-   container.addChild(augen);
-   container.update();
+  
    document.getElementById("haare").style.visibility = "visible";
    document.getElementById("pmhaare1").style.visibility = "visible";
    document.getElementById("pmhaare2").style.visibility = "visible";
@@ -229,9 +223,7 @@ function makeBrowneye() {
 function MHaare1() {
    if (mhaareeins == false) {
    
-   var haare = new createjs.Bitmap("./data/MHaare1.png");
-   container.addChild(haare);
-   container.update();
+ 
    mhaareeins = true;
    }
 

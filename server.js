@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
+const moment = require('moment');
 const formatMessage = require('./utils/messages');
 const {
   userJoin,
@@ -13,6 +14,10 @@ const {
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+
+fs = require('fs');
+
+
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -73,15 +78,42 @@ io.on('connection', socket => {
 });
 
 
-/// test
+/// Namen Reservierung
+
+
+
+var rand = function() {
+  return Math.random().toString(36).substr(2); // remove `0.`
+};
+
+var token = function() {
+  return rand() + rand(); // to make it longer
+};
+
+
+resnametoken = token();
+
+
+io.on("connection", (socket) => {
+  socket.on("namenreser", (resname) => {
+ 
 
 
 
 
+ 
+
+    fs.appendFile('resusernames.txt', resname + "\n" +moment().format('MMMM Do YYYY, h:mm:ss a') + "\n" + resnametoken + "\n\n", function (err) {
+      if (err) return console.log(err);
+      console.log('Created File');
+    })
+  });
+});
 
 
-
-
+io.on("connection", (socket) => {
+  socket.emit("gettoken", resnametoken);
+});
 
 
 

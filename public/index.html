@@ -9,13 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="https://unpkg.com/konva@7.0.3/konva.min.js"></script>
+  
 
 
     
 		<title>Nomi0 Chat</title>
 	</head>
-  <body style="font-family: Bariol, lucida grande, Tahoma, -webkit-pictograph, EmojiSymbols, sans-serif;  background-image: url(data/nomioback.png);   background-size: auto;
+  <body style="font-family: Bariol, lucida grande, Tahoma, -webkit-pictograph, EmojiSymbols, sans-serif;  background-image: url(data/nomioback.png);   background-size: auto; background-repeat: no-repeat;
 " onload="init()">
     <script>
       $(document).ready(function(){
@@ -32,13 +33,18 @@
     </div>
   <br>
   <div class="container">
-    <h2>Nutzernamen reservieren <span class="badge badge-secondary">Bald verfügbar!</span></h2>
+    <h2>Nutzernamen reservieren <span class="badge badge-secondary">Jetzt verfügbar!!!</span></h2>
     <div class="form-group">
+      <form>
       <label for="usr">Nutzername</label>
-      <input type="text" id="resName"  class="form-control" id="usr" maxlength="16" placeholder="Bald verfügbar." data-toggle="tooltip" title="Maximal 16 Zeichen (Buchstaben, Zahlen, Sonderzeichen: - . _ % ! ? *)">
+      <input type="text" name="resname" class="form-control" id="resname" maxlength="16" placeholder="Nutzername" data-toggle="tooltip" title="Maximal 16 Zeichen (Buchstaben, Zahlen, Sonderzeichen: - . _ % ! ? *)" required>
+      <input type="email" name="email" class="form-control" id="email"  placeholder="Deine Email" data-toggle="tooltip" title="Achte drauf, dass deine E-Mail richtig ist." required>
+      <input type="submit" onclick="ResName()" value="Namen reservieren" >
+      
+    </form>
     </div>
   </div>
-    
+
     <br>
       <br>
       <br>
@@ -84,7 +90,7 @@
   <div class="row">
   <div class="col">
   
-<canvas id="myCanvas" width="500" height="800" style="border:1px solid #d3d3d3;" >Hier ist was schief gelaufen...</canvas> 
+<div id="myCanvas" width="500" height="800" style="border:1px solid #d3d3d3;" >Hier ist was schief gelaufen...</div> 
 </div>
     <div class="col">
 <h3 style="display: inline; visibility: hidden;" id="haare" >Haare</h3><br><img style="display: inline;visibility: hidden;" id="pmhaare1" src="/data/PreviewMHaare1.png" onclick="MHaare1()"><img>
